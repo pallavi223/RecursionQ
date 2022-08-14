@@ -8,6 +8,8 @@ Explanation: For N=2 , steps will be
 as follows in the example and total
 3 steps will be taken.
 
+// Time Complexity: T(n) = 2T(n-1) + T(1)
+
 
     long long toh(int N, int from, int to, int aux) {
         // Your code here
@@ -29,3 +31,23 @@ as follows in the example and total
     }
 
 };
+
+
+
+############################################################### OR
+// As an example take n = 3
+// First we move disc 1 and 2 from origin to buffer (a recursive call for n-1 discs)
+// then move the third disc from origin to destination
+// and finally take disc 1 and 2 from buffer to destination.
+
+
+
+void towerOfHanoi(int n, Tower origin, Tower buffer, Tower destination){
+      if(n==1){
+           print("Move disc 1 from "+origin+" to "+ destination);
+           return;
+      }
+     towerOfHanoi(n-1, origin, destination, buffer);
+     print("Move disc "+ n +" from "+origin+" to "+ destination);
+     towerOfHanoi(n-1, buffer, origin, destination);
+}
