@@ -1,0 +1,40 @@
+S = "ABC"
+Output: (A B C)(A BC)(AB C)(ABC)
+Explanation:
+ABC
+AB C
+A BC
+A B C
+
+
+  void solve(string S, string output,vector<string>& ans){
+        //base case
+        if(S.length() == 0){
+            ans.push_back(output);
+            return;
+        }
+        string op1 = output;
+        string op2 = output;
+    
+        op1.push_back(' ');
+        op1.push_back(S[0]);
+        op2.push_back(S[0]);
+        S.erase(S.begin()+0);
+        
+        solve(S,op1,ans);
+        solve(S,op2,ans);
+        return;
+        
+    }
+public:
+
+    vector<string> permutation(string S){
+        // Code Here
+        string output="";
+        vector<string> ans;
+        output.push_back(S[0]);  //A
+        S.erase(S.begin()+0);  //A
+        //call our function
+        solve(S,output,ans);
+        
+        return ans;
